@@ -83,6 +83,14 @@ void mysql_standard_use_type_backend::pre_use(indicator const *ind)
                 snprintf(buf_, bufSize, "%d", *static_cast<int*>(data_));
             }
             break;
+        case x_unsigned_integer:
+            {
+                std::size_t const bufSize
+                    = std::numeric_limits<unsigned int>::digits10 + 3;
+                buf_ = new char[bufSize];
+                snprintf(buf_, bufSize, "%u", *static_cast<unsigned int*>(data_));
+            }
+            break;
         case x_long_long:
             {
                 std::size_t const bufSize

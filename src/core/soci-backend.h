@@ -39,6 +39,7 @@ enum exchange_type
     x_stdstring,
     x_short,
     x_integer,
+    x_unsigned_integer,
     x_long_long,
     x_unsigned_long_long,
     x_double,

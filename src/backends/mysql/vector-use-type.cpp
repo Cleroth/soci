@@ -108,6 +108,18 @@ void mysql_vector_use_type_backend::pre_use(indicator const *ind)
                     snprintf(buf, bufSize, "%d", v[i]);
                 }
                 break;
+            case x_unsigned_integer:
+                {
+                    std::vector<unsigned int> *pv
+                        = static_cast<std::vector<unsigned int> *>(data_);
+                    std::vector<unsigned int> &v = *pv;
+
+                    std::size_t const bufSize
+                        = std::numeric_limits<unsigned int>::digits10 + 3;
+                    buf = new char[bufSize];
+                    snprintf(buf, bufSize, "%d", v[i]);
+                }
+                break;
             case x_long_long:
                 {
                     std::vector<long long> *pv
@@ -194,7 +206,8 @@ std::size_t mysql_vector_use_type_backend::size()
         // simple cases
     case x_char:         sz = get_vector_size<char>         (data_); break;
     case x_short:        sz = get_vector_size<short>        (data_); break;
-    case x_integer:      sz = get_vector_size<int>          (data_); break;
+	 case x_integer:      sz = get_vector_size<int>          (data_); break;
+	 case x_unsigned_integer:      sz = get_vector_size<unsigned int>          (data_); break;
     case x_long_long:    sz = get_vector_size<long long>    (data_); break;
     case x_unsigned_long_long:
         sz = get_vector_size<unsigned long long>(data_);

@@ -61,8 +61,10 @@ struct exchange_traits<int>
 };
 
 template <>
-struct exchange_traits<unsigned int> : exchange_traits<int>
+struct exchange_traits<unsigned int> 
 {
+	typedef basic_type_tag type_family;
+	enum { x_type = x_unsigned_integer };
 };
 
 template <>
